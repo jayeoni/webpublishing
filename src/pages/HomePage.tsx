@@ -10,7 +10,7 @@ export const HomePage = () => {
         <div className="font-light">Sed vel turpis~~</div>
         <div className="mt-5">
           <div className="bg-gray-800 text-white text-center py-3 px-10">
-            상세정보
+            상세정보 임
           </div>
           <div className="text-center py-3 text-gray-800 border border-gray-800 mt-2">
             주문하기
