@@ -100,7 +100,6 @@ export const HomePage = () => {
            <div> 서울특별시 서대문구 대현동 11-1<br/>02-1234-5678<br/>MON-SUN 12:00 PM - 9:00 PM</div>
           </div>
           <div className="bg-gray-800 text-white text-center rounded-full p-3">네이버 지도로 길찾기</div>
-        
         </div>
       </div>
     </div>
