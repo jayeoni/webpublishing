@@ -50,7 +50,7 @@ export const HomePage = () => {
         </div>
       </div>
       
-      <div className='space-y-3'>
+      <div className='space-y-5'>
         <div className="text-3xl font-bold">List</div>
         
         <div className="space-y-3 p-5 border border-gray-200">
