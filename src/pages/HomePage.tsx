@@ -76,7 +76,7 @@ export const HomePage = () => {
       </div>
       <div className='space-y-5'>
         <div className="text-3xl font-bold">Today's Special</div>
-        <div className= "flex space-x-3">
+        <div className= "flex space-x-5">
           <img 
             src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
             alt=""
