@@ -12,10 +12,17 @@ export const LoginPage = () => {
   const users = data.users;
 
   const checkUser = () => {
+    if (email === "" || password === "") {
+      alert('아이디와 비밀번호를 입력해주세요');
+      return;
+    }
     for (let i = 0; i < users.length; i++) {
       if (email === users[i].email && password === users[i].password) {
         alert("로그인 성공");
         replace('/');
+        return;
+      } else if (email === users[i].email && password !== users[i].password) {
+        alert("비밀번호가 틀립니다.");
         return;
       }
     }
