@@ -96,8 +96,8 @@ export const HomePage = () => {
             className = 'w-full h-60 object-cover rounded-xl'
           />
           <div className = 'space-y-2'>
-           <div className='text-xl font-bold'>이화여대 아맛나 식당</div> 
-           <div> 서울특별시 서대문구 대현동 11-1<br/>02-1234-5678<br/>MON-SUN 12:00 PM - 9:00 PM</div>
+           <div className='text-xl font-bold'>이화여대 아콘스톨</div> 
+           <div> 서울특별시 서대문구 신촌역로 17 1층 110호 (대현동)<br/>02-1234-5678<br/>MON-SUN 12:00 PM - 9:00 PM</div>
           </div>
           <div className="bg-gray-800 text-white text-center rounded-full p-3">네이버 지도로 길찾기</div>
         </div>
