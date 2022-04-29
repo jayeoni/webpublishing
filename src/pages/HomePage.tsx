@@ -8,13 +8,14 @@ export type Category = {
   id: number;
   label: string;
   url: string;
+  imageUrl: string;
 }
 
 const CATEGORY_LIST = [
-  { id: 0, label: '인기있는영화', url: '/popular' },
-  { id: 1, label: '현재 상영작', url: '/now_playing' },
-  { id: 2, label: '인기 영화', url: '/upcoming' },
-  { id: 3, label: '개봉예정영화', url: '/top_rated' }
+  { id: 0, label: '인기있는영화', url: '/popular', imageUrl: 'movie' },
+  { id: 1, label: '현재 상영작', url: '/now_playing', imageUrl: 'popcorn' },
+  { id: 2, label: '인기 영화', url: '/upcoming', imageUrl: 'night' },
+  { id: 3, label: '개봉예정영화', url: '/top_rated', imageUrl: 'theater' }
 ];
 
 export type Movie = {
@@ -68,7 +69,7 @@ export const HomePage = () => {
         <div className="text-2xl font-bold">Category</div>
         <div className='flex space-x-6'>
           {CATEGORY_LIST.map((data => (
-            <CategoryButton category={data} onClick={setCategory} />
+            <CategoryButton key={data.id} category={data} onClick={setCategory} />
           )))}
         </div>
       </div>
