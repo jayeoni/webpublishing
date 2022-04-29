@@ -1,7 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CategoryButton } from '../components/CategoryButton';
+import { MovieCard } from '../components/MovieCard';
+
+const API_KEY = 'd344ffd6ff492bc9cb8daa82e50ce0f2';
+
+export type Category = {
+  id: number;
+  label: string;
+  url: string;
+}
+
+const CATEGORY_LIST = [
+  { id: 0, label: '인기있는영화', url: '/popular' },
+  { id: 1, label: '현재 상영작', url: '/now_playing' },
+  { id: 2, label: '인기 영화', url: '/upcoming' },
+  { id: 3, label: '개봉예정영화', url: '/top_rated' }
+];
+
+export type Movie = {
+  id: number;
+  title: string;
+  overview: string;
+  poster_path: string;
+  vote_average: number;
+}
+
 
 export const HomePage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [categoryIndex, setCategoryIndex] = useState(0);
+
+  const setCategory = (index: number) => {
+    setCategoryIndex(index);
+  }
+
+  const getData = async (categoryIndex: number) => {
+    const url = `https://api.themoviedb.org/3/movie${CATEGORY_LIST[categoryIndex].url}?api_key=${API_KEY}&language=ko-KR&page=1`;
+    const response = await fetch(url);
+    if (response.status === 200) {
+      const data = await response.json();
+      setMovies(data.results);
+    } else {
+      throw new Error("데이터를 받아오지 못했습니다.");
+    }
+    setIsLoading(false);
+
+  }
+
+  useEffect(() => {
+    getData(categoryIndex);
+  }, [categoryIndex])
+
   return (
     <div className="m-4 space-y-10">
       <div className='space-y-4'>
@@ -17,14 +67,13 @@ export const HomePage = () => {
       <div className='space-y-4'>
         <div className="text-2xl font-bold">Category</div>
         <div className='flex space-x-6'>
-          <CategoryButton label={'일식'} />
-          <CategoryButton label={'중식'} />
-          <CategoryButton label={'한식'} />
-          <CategoryButton label={'양식'} />
+          {CATEGORY_LIST.map((data => (
+            <CategoryButton category={data} onClick={setCategory} />
+          )))}
         </div>
       </div>
 
-
+      {/*
       <div className='space-y-5'>
         <div className="text-3xl font-bold">List</div>
 
@@ -49,20 +98,15 @@ export const HomePage = () => {
         </div>
 
       </div>
+  */}
+
       <div className='space-y-5'>
         <div className="text-3xl font-bold">Today's Special</div>
-        <div className="flex space-x-5">
-          <img
-            src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-            alt=""
-            className="w-40 h-56 object-cover rounded-xl"
-          />
-          <div>
-            <div className='text-xl font-bold'> 식당 이름 </div>
-            <div className='text-lg font-normal'>말이 필요 없는 서울 최고의 식당 중 하나</div>
-            <div className='text-base text-gray-500'>서울시 강남구 청담동</div>
-          </div>
-        </div>
+
+        {!isLoading && movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+
         <div className='border-t-2 border-gray-100'></div>
         <div className='space-y-5'>
           <img
